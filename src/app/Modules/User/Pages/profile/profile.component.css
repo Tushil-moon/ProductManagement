@@ -1,0 +1,44 @@
+.form-control:hover, .btn:hover {
+    transition: box-shadow 0.3s ease;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-light .fa-pen {
+    color: #007bff;
+}
+
+.img-fluid {
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.img-fluid:hover {
+    transform: scale(1.05);
+}
+
+button{
+    bottom: 10px; 
+    right: 10px;
+}
+
+.btn-box{
+  font-size: 14px;
+  padding: 8px 8px;
+  background-color: #080808;
+  border-radius: 5px;
+  color: #ffffff;
+  border: 1px solid #080808;
+  border-radius: 5px;
+}
+.loader-overlay {
+    height: 70vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; 
+    color: white;
+  }

@@ -1,0 +1,53 @@
+<header class="header_section position-fixed w-100">
+  <nav class="navbar navbar-expand-lg custom_nav-container">
+    <div class="container">
+      <!-- Brand Logo -->
+      <a class="navbar-brand text-white" [routerLink]="['/']">
+        <span class="brand-logo">Giftos</span>
+      </a>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon text-white"></span>
+      </button>
+
+      <!-- Main Navigation Links -->
+      <div class="collapse navbar-collapse text-center align-content-center" id="navbarNav">
+        <ul class="navbar-nav ms-auto d-flex justify-content-center">
+          <li class="nav-item mt-1">
+            <a class="nav-link" [routerLink]="['/product-list']" routerLinkActive="active">
+              <i class="fa-solid fa-list-ul"></i>
+              <span>Product List</span>
+            </a>
+          </li>
+          <!-- Additional Navigation Item (if needed) -->
+          <!-- <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/add-product']" routerLinkActive="active">
+                <i class="fa fa-plus"></i>
+                <span>Add Product</span>
+              </a>
+            </li> -->
+          <li>
+            <!-- User Profile & Logout Section -->
+            <div class="user-options d-flex align-items-center justify-content-center">
+              
+              <a class="nav-link d-flex align-items-center" [routerLink]="['/profile']" routerLinkActive="active">
+                <img [src]=" getUserData()?.profile_image || profileImage()" alt="" width="30px">
+                <span>{{ getUserData()?.user_name || 'guest'}}</span>
+              </a>
+              <a (click)="logout()" class="nav-link d-flex align-items-center logout">
+                <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>
+                <span>Logout</span>
+              </a>
+              <a class="nav-link bag" [routerLink]="['/cart']" routerLinkActive="active"><i
+                  class="fa-solid fa-bag-shopping"></i></a>
+              <a class="nav-link wish" [routerLink]="['/wishlist']" routerLinkActive="active"><i
+                  class="fa-solid fa-heart"></i></a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

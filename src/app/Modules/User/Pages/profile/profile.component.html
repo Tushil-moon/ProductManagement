@@ -1,0 +1,98 @@
+<div class="container mt-4">
+    <!-- Breadcrumb -->
+    <div class="mb-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a [routerLink]="['/home']" routerLinkActive="router-link-active" class="text-decoration-none text-black fw-medium">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Profile
+                </li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- Profile Form Card -->
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="card shadow-lg border-0 rounded-3 w-100 py-5 py-md-4">
+            <div class="row g-0">
+                @if (loading._isLoading | async) {
+                    <div class="loader-overlay">
+                        <div class="spinner-border text-black" role="status">
+                            <span class="sr-only"></span>
+                        </div>
+                    </div>
+                    }
+                @if(!(loading._isLoading | async)){
+                    <!-- Profile Image Preview Column -->
+                <div class="col-lg-6 d-flex justify-content-center align-items-center ">
+                    <div class="object-fit-cover position-relative">
+                        <img [src]="profileImage()" alt="Profile Image" 
+                             class="img-fluid rounded " width="250px" height="150px"
+                             #profileImagePreview />
+                        <!-- Edit Icon (Pen) -->
+                        <button (click)="editImage()"  class="btn btn-light rounded-circle shadow-sm position-absolute">
+                            <i class="fas fa-pen"></i>
+                        </button>
+                        <input type="file" (change)="previewImage($event)" #fileInput class="d-none" />
+                    </div>
+                </div>
+
+                <!-- Form Column -->
+                <div class="col-lg-6 p-4 " >
+                    <h2 class="text-start fw-bold mb-5 mb-md-4"><i class="fa fa-user" aria-hidden="true"></i> User Profile</h2>
+
+                    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                        <!-- Full Name and Email in one row -->
+                        <div class="row">
+                            <div class="col-md-6 form-group mb-3">
+                                <label for="first_name" class="fw-semibold">First Name</label>
+                                <input id="first_name" type="text" formControlName="first_name" class="form-control" placeholder="Enter First name" />
+                                <div *ngIf="profileForm.get('first_name')?.invalid && (profileForm.get('first_name')?.touched || submitted())" class="text-danger">
+                                    <small>Full name is required</small>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 form-group mb-3">
+                                <label for="last_name" class="fw-semibold">Last Name</label>
+                                <input id="last_name" type="text" formControlName="last_name" class="form-control" placeholder="Enter Last Name" />
+                                <div *ngIf="profileForm.get('last_name')?.invalid && (profileForm.get('last_name')?.touched || submitted())" class="text-danger">
+                                    <small>Last name is required</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="form-group mb-3">
+                            <label for="email" class="fw-semibold">Email</label>
+                            <input id="email" type="email" formControlName="email" class="form-control" placeholder="Enter email" />
+                            <div *ngIf="profileForm.get('email')?.invalid && (profileForm.get('email')?.touched || submitted())" class="text-danger">
+                                <small>Email is required</small>
+                            </div>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="form-group mb-3">
+                            <label for="address" class="fw-semibold">User Name</label>
+                            <input type="text" id="address" formControlName="user_name" class="form-control" placeholder="Enter User Name">
+                            <div *ngIf="profileForm.get('user_name')?.invalid && (profileForm.get('user_name')?.touched || profileForm.get('user_name')?.dirty || submitted())" class="text-danger">
+                                <small>User Name is required</small>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button in the Center -->
+                        <div class="d-flex justify-content-start mt-4">
+                            <button type="submit" class="btn-box">
+                                Save Profile
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+
+ .img-box img {
+    
+  padding:10px ;
+    width: 100%;
+    /* Make the image take the full width of the container */
+    height: 100%;
+    /* Make the image take the full height of the container */
+    object-fit: cover;
+    /* Cover the container while maintaining aspect ratio */
+  }
+  
+  .img-box{
+    display: -webkit-box;
+  display: -ms-flexbox;
+
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0;
+  /* Remove padding to allow image to fill the container */
+  height: 245px;
+  /* Fixed height of the img-box */
+  width: 100%;
+  /* Ensure full width if needed */
+  overflow: hidden;
+  /* Hide any overflow of the image */
+  }
+
+  h5{
+    font-size: 16px;
+  }
+  p{
+    font-size: 12px;
+  }
+
+  .card{
+    background-color: rgba(89, 89, 89, 0.085);
+    border: none;
+  }
+  .card-footer{
+    color: rgb(34, 34, 34);
+    background-color: rgb(203, 203, 203);
+  }
+  .card-footer span{
+    font-size: 12px;
+  }
+
+  .card-footer button{
+    font-size: 12px;
+  }

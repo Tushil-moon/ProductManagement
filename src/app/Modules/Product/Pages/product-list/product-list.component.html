@@ -1,0 +1,97 @@
+<div class="table-title  mb-4 container-fluid">
+	<div class="row justify-content-between align-items-center">
+		<div class="col-12 col-md-6 text-center text-md-start mb-3 mb-md-0">
+			<h2>Products Management</h2>
+		</div>
+		<div class="col-12 col-md-6 text-center text-md-end">
+			<a [routerLink]="['/home']" class="btn btn-danger me-2 mb-2 mb-md-0">
+				<i class="fa-solid fa-arrow-right-from-bracket"></i> <span>Go to Home</span>
+			</a>
+			<a [routerLink]="['/add-product']" class="btn btn-success mb-2 mb-md-0">
+				<i class="fa-solid fa-plus"></i> <span>Add Product</span>
+			</a>
+		</div>
+	</div>
+</div>
+
+
+<div class=" m-3 ">
+	
+		<div *ngFor="let res of _response$.value; let resIndex = index;">
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Product Image</th>
+							<th scope="col">Product Name</th>
+							<th scope="col">Product Slug</th>
+							<th scope="col">Product Description</th>
+							<th scope="col">Product Price</th>
+							<th scope="col">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<cdk-virtual-scroll-viewport itemSize="100"  class="viewport" (scrolledIndexChange)="onScroll($event)" >
+						<tr *ngFor="let product of res.data; let prodIndex = index;" class="trdata">
+							<td>
+								<img [src]="product.image" alt="Product image unavailable" width="50">
+							</td>
+							<td>{{product.name}}</td>
+							<td>{{product.slug}}</td>
+							<td>{{product.description}}</td>
+							<td>{{product.price}}</td>
+							<td>
+								<button [routerLink]="['/update', product.id]" routerLinkActive="router-link-active" class="edit"
+									data-toggle="modal" ><i class="fa-solid fa-pen-to-square"></i></button>
+								<button href="#deleteProductModal" class="delete" data-toggle="modal" (click)="getDeleteID(product.id)">
+									<i class="fa-solid fa-trash"></i>
+								</button>
+							</td>
+						</tr>
+					</cdk-virtual-scroll-viewport>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	
+
+	<!-- <div class="clearfix d-flex flex-column flex-md-row justify-content-between align-items-center">
+		<div class="hint-text order-1 order-md-0">Showing <b>{{res.from}}</b> to <b>{{res.to}}</b> out of
+			<b>{{res.total}}</b> Products</div>
+		<div class="pagination-wrapper order-0 order-md-1 ms-md-auto">
+			<ul class="pagination pagination-sm m-0">
+				<li *ngFor="let link of res.links; trackBy: trackByLink" class="page-item" [ngClass]="{'active': link.label === (res.current_page.toString())}">
+					<a class="page-link" [class.disabled]="(link.url === null)" (click)="loadPage(link.url)">
+						<span [innerHTML]="link.label"></span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div> -->
+</div>
+
+
+<!-- Delete Modal HTML -->
+<div id="deleteProductModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">
+					<div>
+						<h4 class="modal-title">Delete Product</h4>
+					</div>
+					<div>
+						<button type="button" class="btn btn-close" data-dismiss="modal" aria-hidden="true"></button>
+					</div>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to delete these Product?</p>
+				</div>
+				<div class="modal-footer">
+					<button  type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">Cancel</button>
+					<button  type="button" class="btn btn-danger" (click)="onDelete()">Delete</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

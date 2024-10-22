@@ -1,0 +1,68 @@
+.hover-scale {
+  transition: transform 0.3s ease-in-out;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 1rem;
+}
+
+.card .btn {
+  transition: background-color 0.3s ease-in-out, box-shadow 0.2s ease;
+}
+
+.card .btn:hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+a{
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.img-box {
+ 
+  /* Make the image take the full width of the container */
+  height: 100%;
+  /* Make the image take the full height of the container */
+  object-fit: cover;
+  /* Cover the container while maintaining aspect ratio */
+}
+.btn-box{
+  font-size: 14px;
+  padding: 8px 8px;
+  background-color: #080808;
+  border-radius: 5px;
+  color: #ffffff;
+  border: 1px solid #080808;
+  border-radius: 5px;
+ }
+ .btn-boxc{
+  background-color: #ffffff;
+  margin-left: 10px;
+  font-size: 14px;
+  padding: 7.5px 7.5px;
+  border-radius: 5px;
+  color: #000000;
+  border: 1px solid #080808;
+  border-radius: 5px;
+ }
+ .loader-overlay {
+  height: 80vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; 
+  color: white;
+}

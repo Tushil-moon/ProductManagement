@@ -1,0 +1,114 @@
+<div class="container mt-3">
+    <!-- Breadcrumb -->
+    <div class="mb-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb ">
+                <li class="breadcrumb-item">
+                    <a [routerLink]="['/home']" routerLinkActive="router-link-active" class="text-decoration-none text-black fw-medium">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    {{ _productById$.value?.id ? 'Update Product' : 'Add Product' }}
+                </li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- Product Form Card -->
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="card shadow-lg border-0 w-100">
+            @if (loading._isLoading | async) {
+            <div class="loader-overlay">
+                <div class="spinner-border text-black" role="status">
+                    <span class="sr-only"></span>
+                </div>
+            </div>
+            }
+           @if(!(loading._isLoading | async)){
+            <div class="row g-0">
+                <!-- Image Preview Column -->
+                <div class="col-lg-6 d-flex justify-content-center align-items-center flex-column">
+                    <div class="object-fit-cover position-relative">
+                        <img [src]="productImage()"
+                             alt="Product Preview" 
+                             class="img-fluid rounded img-box"
+                             width="400px" height="300px"/>
+                    </div>
+                    <div [ngClass]="_productById$.value?.id ? '' : 'mt-3'">
+                        <button class="btn-box" (click)="addImage()">{{ _productById$.value?.id ? 'Change Image' : 'Add Image' }}</button>
+                    </div>
+                </div>
+
+                <!-- Form Column -->
+                <div class="col-lg-6 px-4 my-4">
+                    <h2 class="text-center fw-semibold mb-3 ">{{ _productById$.value?.id ? 'Update Product' : 'Add New Product' }}</h2>
+                    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+                        <!-- Product Image -->
+                        <div class="form-group mb-3 d-none">
+                            <label for="image" class="fw-medium ">Product Image</label>
+                            <input type="file" id="image" class="form-control bg-grey" (change)="imagePreview($event)" #fileInput/>
+                            @if(submitted()){
+                                <div  class="text-danger">
+                                    <small>Image is required</small>
+                                </div>
+                            }    
+                        </div>
+
+                        <!-- Product Name -->
+                        <div class="form-group mb-3">
+                            <label for="name" class="fw-medium ">Product Name</label>
+                            <input id="name" type="text" formControlName="name" class="form-control bg-transparent" placeholder="Enter product name" />
+                            @if(productForm.get('name')?.invalid && (productForm.get('name')?.touched || submitted())){
+                                <div  class="text-danger">
+                                    <small>Name is required</small>
+                                </div>
+                            }
+                        </div>
+
+                        <!-- Product Slug -->
+                        <div class="form-group mb-3">
+                            <label for="slug" class="fw-medium">Product Slug</label>
+                            <input id="slug" type="text" formControlName="slug" class="form-control" placeholder="Enter product slug" />
+                            @if(productForm.get('slug')?.invalid && (productForm.get('slug')?.touched || submitted())){
+                                <div  class="text-danger">
+                                    <small>Slug is required</small>
+                                </div>
+                            }
+                        </div>
+
+                        <!-- Product Description -->
+                        <div class="form-group mb-3">
+                            <label for="description" class="fw-medium">Product Description</label>
+                            <textarea id="description" formControlName="description" class="form-control" rows="6" placeholder="Enter product description"></textarea>
+                            @if(productForm.get('description')?.invalid && (productForm.get('description')?.touched || productForm.get('description')?.dirty || submitted())){
+                                <div  class="text-danger">
+                                    <small>Description is required</small>
+                                </div>
+                            }
+                        </div>
+
+                        <!-- Product Price -->
+                        <label for="price" class="fw-medium">Product Price</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input id="price" type="text" formControlName="price" class="form-control" placeholder="Enter product price" />
+                        </div>
+                        @if(productForm.get('price')?.invalid && (productForm.get('price')?.touched || productForm.get('price')?.dirty || submitted())){
+                            <div  class="text-danger">
+                                <small>Price is required</small>
+                            </div>
+                        }
+                        <!-- Submit Button -->
+                        <div class="d-flex justify-content-end mt-4">
+                            <button type="submit" class="btn-box shadow-sm px-4" >
+                                {{ _productById$.value?.id ? 'Update Product' : 'Add Product' }}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+           }
+        </div>
+    </div>
+</div>

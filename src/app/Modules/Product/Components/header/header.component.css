@@ -1,0 +1,107 @@
+/* newww */
+
+.header_section {
+  background-color: #343a40;
+  top: 0;
+  z-index: 500;
+
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .brand-logo {
+    color: #ffffff;
+  }
+
+  .navbar-toggler-icon {
+    color: white;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    
+    color: rgba(255, 255, 255, 0.8);
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #f8f9fa;
+    }
+
+    &.active {
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    img, i {
+      margin-right: 0.5rem;
+    }
+    .bag{
+      margin-right: 0;
+    }
+    .wish{
+      margin-right: 0;
+    }
+    
+  }
+
+  .user-options {
+    margin-left: auto;
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      margin-left: 1rem;
+    }
+  }
+
+  .logout {
+    font-size: 12px;
+    padding: 4px 8px;
+    background-color: #fffdfd;
+    border-radius: 5px;
+    color: #080808;
+    border: 1px solid #fffdfd;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}
+
+
+.custom_nav-container .navbar-toggler {
+  padding: 0;
+  width: 37px;
+  height: 42px;
+  transition: all 0.3s;
+}
+
+.custom_nav-container .navbar-toggler span {
+  display: block;
+  width: 35px;
+  height: 4px;
+  background-color: #fffdfd;
+  margin: 7px 0;
+  transition: all 0.3s;
+  position: relative;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.custom_nav-container .navbar-toggler span::before,
+.custom_nav-container .navbar-toggler span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fffdfd;
+  top: -10px;
+  border-radius: none;
+  transition: all 0.3s;
+}
+
+.custom_nav-container .navbar-toggler span::after {
+  top: 10px;
+}
